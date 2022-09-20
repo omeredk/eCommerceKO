@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Product>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2>Ürün Listesi</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Product" asp-action="Crup" class="btn btn-primary ">
+                <span>Add New Product</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-striped my-2">
+            <thead>
+                <tr>
+                    <th width="100px">
+                        Product IMG
+                    </th>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Color
+                    </th>
+                    <th>
+                        Size
+                    </th>
+                    <th>
+                        Discount
+                    </th>
+                    <th width="150px">
+
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td><img src="@product.ProductPic" width="80px" /></td>
+                        <td class="pt-4">@product.ProductName</td>
+                        <td class="pt-4">@product.ProductPrice</td>
+                        <td class="pt-4">@product.Category.CategoryName</td>
+                        <td class="pt-4">@product.ProductColor.ProductColorName</td>
+                        <td class="pt-4">@product.ProductSize.ProductSizeName</td>
+                        <td class="pt-4">@product.Discount.DiscountAmounth</td>
+                        <td>
+                            <a asp-controller="Product" asp-action="Crup" asp-route-id="@product.ProductID" class="btn btn-primary">
+                                Edit
+                            </a>
+
+                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductID" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
